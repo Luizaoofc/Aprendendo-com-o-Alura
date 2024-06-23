@@ -1,6 +1,9 @@
 import os
 
-restaurantes = ['Ifood']
+restaurantes = [{'nome': 'Praça', 'categoria': 'Pastelão', 'ativo': True},
+                {'nome': 'Pizzaria do Jânio', 'categoria': 'Pizza', 'ativo':False},
+                {'nome': 'Cantina', 'categoria': 'Italiana', 'ativo': False}
+                ]
 
 def nome_do_programa():
     print('''
@@ -26,16 +29,10 @@ def cadastrar_novo_restaurante():
     os.system('cls')
     print('Cadastro de novos restaurantes\n')
     nome_do_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
-    restaurantes.append(nome_do_restaurante)
+    categoria = input(f'Digite o neme da categoria de restaurante {nome_do_restaurante}: ')
+    dados_do_restaurante = {'nome':nome_do_restaurante, 'categoria': categoria, 'ativo':False}
+    restaurantes.append(dados_do_restaurante)
     print(f'O restaurante {nome_do_restaurante} foi cadastrado com sucesso!')
-    input('\nDigite uma tecla para voltar ao menu principal: ')
-    main()
-
-def listar_restaurantes():
-    os.system('cls')
-    print('Listando os restaurantes')
-    for restaurante in restaurantes:
-        print(f'.{restaurante}')
     input('\nDigite uma tecla para voltar ao menu principal: ')
     main()
 
@@ -43,6 +40,18 @@ def opcao_invalida():
     print('Opção inválida\n')
     input('Digite uma tecla para voltar ao menu principal: ')
     main()
+
+def listar_restaurantes():
+    os.system('cls')
+    print('Listando os restaurantes')
+    for restaurante in restaurantes:
+        nome_restaurante = restaurante['nome']
+        categoria = restaurante['categoria']
+        ativo = restaurante['ativo']
+        print(f'- {nome_restaurante} | {categoria} | {ativo}')
+    input('\nDigite uma tecla para voltar ao menu principal: ')
+    main()
+
 
 def escolher_opcao():
     try:
